@@ -1,3 +1,6 @@
+import os
+
+
 CSRF_ENABLED = True
 SECRET_KEY = '1jUiNoVKUX4VS!psWQ&P*pvY2rU!ejdDMKxg2G93P2$^2rg'
 OPENID_PROVIDERS = [
@@ -6,4 +9,8 @@ OPENID_PROVIDERS = [
     {'name': 'AOL', 'url': 'http://openid.aol.com/<username>'},
     {'name': 'Flickr', 'url': 'http://www.flickr.com/<username>'},
     {'name': 'MyOpenID', 'url': 'https://www.myopenid.com'}]
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://ewwpaullus_kim:pRat92Cas11@pg2.sweb.ru/ewwpaullus_kim'
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+SQLALCHEMY_TRACK_MODIFICATIONS = True
